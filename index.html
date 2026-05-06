@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenText — Project to TXT</title>
+
+    <!-- Tailwind CSS CDN (utility classes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'light-black': '#111111',
+                        'surface': '#0d0d0d',
+                        'border-subtle': '#222222',
+                        'text-muted': '#999999',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom styles for animations / complex selectors -->
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-black text-white font-sans antialiased">
+
+    <!-- Header -->
+    <div class="w-full flex items-center justify-between px-5 sm:px-8 pt-6 pb-0 relative z-30">
+        <a href="#" class="text-white text-lg sm:text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity duration-200">
+            OpenText
+        </a>
+        <!-- Hamburger button (will trigger overlay) -->
+        <button id="hamburgerBtn" aria-label="Menu"
+                class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-colors duration-200 cursor-pointer group">
+            <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+                <rect y="0" width="20" height="2" rx="1" fill="white"/>
+                <rect y="6" width="20" height="2" rx="1" fill="white"/>
+                <rect y="12" width="20" height="2" rx="1" fill="white"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- ========== Hamburger Overlay (hidden by default) ========== -->
+    <div id="hamburgerOverlay" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="hamburgerPanel" class="fixed top-0 right-0 h-full w-72 sm:w-80 bg-[#0d0d0d] border-l border-[#222222] flex flex-col p-6 shadow-2xl transform translate-x-full transition-transform duration-400 ease-cubic">
+            <button id="closeMenuBtn" class="self-end w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-colors mb-8">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M1 1L15 15M15 1L1 15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <nav class="flex flex-col gap-5">
+                <a href="#uploadSection" class="text-white text-base hover:opacity-70 menu-link">Upload</a>
+                <a href="#featuresSection" class="text-white text-base hover:opacity-70 menu-link">Features</a>
+                <a href="#howItWorksSection" class="text-white text-base hover:opacity-70 menu-link">How It Works</a>
+            </nav>
+            <div class="mt-auto pt-10 border-t border-[#222222]">
+                <p class="text-xs text-[#777777]">Built by Aina Ayodeji</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== Main Content ========== -->
+    <main class="px-5 sm:px-8 max-w-4xl mx-auto pb-20">
+
+        <!-- Upload Section -->
+        <section id="uploadSection" class="pt-10 sm:pt-16 pb-8">
+            <p class="text-sm text-[#888888] mb-2 tracking-wide uppercase">Serverless • Private • Instant</p>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-3">
+                Project <span class="text-white">→</span> TXT
+            </h1>
+            <p class="text-base sm:text-lg text-[#999999] max-w-xl mb-8 leading-relaxed">
+                Convert your entire project directory into a single, clean text file — perfect for AI tools, code reviews, or documentation.
+            </p>
+
+            <!-- Upload Zone (click & drag) -->
+            <div id="uploadZone" class="upload-zone rounded-2xl p-8 sm:p-12 text-center bg-[#050505] cursor-pointer"
+                 tabindex="0" role="button" aria-label="Select folder to upload">
+                <input type="file" id="folderInput" webkitdirectory directory multiple class="hidden" />
+                <div class="mb-5 flex justify-center">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="opacity-70">
+                        <rect x="8" y="10" width="32" height="28" rx="3" stroke="white" stroke-width="2" fill="none"/>
+                        <path d="M8 18H40" stroke="white" stroke-width="2"/>
+                        <path d="M20 26L24 30L28 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M24 30V36" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <p class="text-white font-medium text-lg mb-1">Select your project folder</p>
+                <p class="text-[#777777] text-sm mb-4">Click to browse or drag & drop</p>
+                <span class="inline-block text-xs text-[#555555] bg-[#111111] px-3 py-1.5 rounded-full">
+                    node_modules, .git, DS_Store are auto‑ignored
+                </span>
+            </div>
+            <div id="fileCountBadge" class="hidden mt-4 text-sm text-[#888888] text-center"></div>
+        </section>
+
+        <!-- File Checklist (hidden until files are loaded) -->
+        <section id="checklistSection" class="hidden pb-8">
+            <div class="bg-[#0d0d0d] border border-[#222222] rounded-2xl overflow-hidden">
+                <div class="flex items-center justify-between px-5 py-4 border-b border-[#222222] flex-wrap gap-3">
+                    <div class="flex items-center gap-3">
+                        <span id="selectedCount" class="text-white font-semibold text-sm">0 selected</span>
+                        <span class="text-[#555555]">/</span>
+                        <span id="totalCount" class="text-[#888888] text-sm">0 files</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="selectAllBtn" class="text-xs text-white hover:underline">Select All</button>
+                        <button id="deselectAllBtn" class="text-xs text-[#888888] hover:text-white">Deselect All</button>
+                    </div>
+                </div>
+                <div id="fileListContainer" class="max-h-80 overflow-y-auto"></div>
+                <div class="px-5 py-4 border-t border-[#222222] flex justify-end">
+                    <button id="generateBtn" class="btn-generate bg-white text-black font-semibold px-6 py-3 rounded-xl text-sm hover:bg-[#e6e6e6] transition-all duration-200 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed">
+                        Generate & Download TXT
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="featuresSection" class="fade-section pt-16 pb-12">
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">Why choose OpenText?</h2>
+            <p class="text-[#888888] text-sm mb-10 max-w-lg">The simplest way to convert an entire project directory into one consolidated text file.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="featuresGrid"></div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="howItWorksSection" class="fade-section pt-8 pb-16">
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">How it works</h2>
+            <p class="text-[#888888] text-sm mb-10">Four stages — all happening in your browser.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="stagesGrid"></div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#1a1a1a] px-5 sm:px-8 py-8">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5">
+            <p class="text-xs text-[#666666]">Built by <span class="text-white font-medium">Aina Ayodeji</span></p>
+            <div class="flex items-center gap-5" id="socialLinks"></div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Back to top"
+            class="fixed bottom-6 right-6 w-11 h-11 rounded-full bg-[#0d0d0d] border border-[#333333] flex items-center justify-center z-40 shadow-lg opacity-0 pointer-events-none transition-all duration-300">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 13V3M8 3L3 8M8 3L13 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <!-- Toast notification (hidden) -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#1a1a1a] text-white text-sm px-6 py-3 rounded-full border border-[#333] opacity-0 transform translate-y-4 transition-all duration-300 pointer-events-none z-50"></div>
+
+    <!-- JavaScript files -->
+    <script src="js/processor.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
