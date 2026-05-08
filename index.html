@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenText</title>
-    <meta name="description" content="OpenText is a serverless tool that covert a code project folder into a single txt file ">
-<meta name="keywords" content="OpenText, folder to text, project to text">
+    <title>FLtxt</title>
+  <meta name="description" content="Fltxt is a serverless, privacy-first tool that converts a code project folder into a single .txt file directly in your browser.">
+<meta name="keywords" content="Fltxt, folder to text, project to text, code to txt, LLM context, AI prompt tool">
 
-<!-- Open Graph (for social + Google thumbnails) -->
-<meta property="og:title" content="OpenText">
-<meta property="og:description" content="OpenText is a serverless tool that covert a code project folder into a single txt file ">
-<meta property="og:image" content="https://opentxt.netlify.app">
-<meta property="og:url" content="https://opentxt.netlify.app/#">
+<!-- Open Graph (for social previews) -->
+<meta property="og:title" content="Fltxt — Drop a folder, get a single .txt file">
+<meta property="og:description" content="Fltxt converts your entire project into one clean text file. 100% private, nothing leaves your browser.">
+<meta property="og:image" content="https://fltxt.netlify.app/assets/og-image.png">
+<meta property="og:url" content="https://fltxt.netlify.app/">
 <meta property="og:type" content="website">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
-<!-- Let Google show a large image thumbnail -->
+<!-- Let Google show large thumbnails in search results -->
 <meta name="robots" content="max-image-preview:large">
-<link rel="icon" href="assets/favicon.ico">
-<!-- Favicon (fallback) -->
-<link rel="icon" href="assets/favicon.ico" sizes="any">
-<!-- PNG favicons for modern browsers -->
+
+<!-- Favicon (modern browsers) -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-<!-- Apple Touch Icon (iPhones, iPads) -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<!-- Android Chrome -->
-<link rel="manifest" href="assets/site.webmanifest">
 
+<!-- Apple Touch Icon (iOS home screen) -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+<!-- Android Chrome / PWA -->
+<link rel="manifest" href="assets/site.webmanifest">
     <!-- Tailwind CSS CDN (utility classes) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -54,7 +53,7 @@
     <!-- Header -->
     <div class="w-full flex items-center justify-between px-5 sm:px-8 pt-6 pb-0 relative z-30">
         <a href="https://opentxt.netlify.app/" class="text-white text-lg sm:text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity duration-200">
-            OpenText
+            fltxt
         </a>
         <!-- Hamburger button (will trigger overlay) -->
         <button id="hamburgerBtn" aria-label="Menu"
@@ -145,7 +144,7 @@
 
         <!-- Features Section -->
         <section id="featuresSection" class="fade-section pt-16 pb-12">
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">Why choose OpenText?</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">Why choose fltxt?</h2>
             <p class="text-[#888888] text-sm mb-10 max-w-lg">The simplest way to convert an entire project directory into one consolidated text file.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="featuresGrid"></div>
         </section>

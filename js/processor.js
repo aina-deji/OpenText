@@ -1,5 +1,5 @@
 /**
- * processor.js – OpenText
+ * processor.js – fltxt
  * 
  * Responsible for:
  *   - Filtering a FileList from a webkitdirectory input.
