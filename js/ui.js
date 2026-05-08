@@ -262,12 +262,11 @@ function populateFeatures() {
     const grid = document.getElementById('featuresGrid');
     if (!grid) return;
     const features = [
-        { title: 'Smart Filtering', desc: 'Automatically excludes node_modules, .git, and other noise.' },
-        { title: '100% Private', desc: 'Everything stays in your browser. No uploads, no servers.' },
-        { title: 'Precise Control', desc: 'Check and uncheck exactly which files to include.' },
+        { title: 'Auto Exclusion', desc: 'Automatically excludes node_modules, .git, and other noise.' },
+        { title: 'Zero server dependency', desc: 'Everything stays in your browser. No uploads, no servers.' },
+        { title: 'Granular selection', desc: 'Check and uncheck exactly which files to include.' },
         { title: 'Instant Export', desc: 'No waiting. Merged text file downloads immediately.' },
-        { title: 'Universal Support', desc: 'Works with any project folder, from any IDE.' },
-        { title: 'Optimized Output', desc: 'Cleanly formatted with file path headers, ready for AI.' },
+        { title: 'Optimized Output', desc: 'Cleanly formatted with file path headers.' },
     ];
     grid.innerHTML = features.map(f => `
         <div class="feature-card bg-[#0d0d0d] border border-[#1f1f1f] rounded-xl p-5">
@@ -285,9 +284,9 @@ function populateStages() {
     if (!grid) return;
     const stages = [
         { letter: 'A', title: 'Upload', desc: 'Browser asks permission to view folder. You approve, and the file list is received.' },
-        { letter: 'B', title: 'filkter', desc: 'Filters out irrelevant files and folders instantly, keeping only source code.' },
+        { letter: 'B', title: 'filter', desc: 'Filters out irrelevant files and folders instantly, keeping only source code.' },
         { letter: 'C', title: 'Merge', desc: 'All selected files are read in parallel and merged into one structured string.' },
-        { letter: 'D', title: 'Delivery', desc: 'A blob is created and downloaded automatically. Done.' },
+        { letter: 'D', title: 'Delivery', desc: ' Your files is automatically available for download in seconds. Done.' },
     ];
     grid.innerHTML = stages.map(s => `
         <div class="bg-[#0d0d0d] border border-[#1f1f1f] rounded-xl p-5 relative">
@@ -302,10 +301,10 @@ function populateSocialLinks() {
     const container = document.getElementById('socialLinks');
     if (!container) return;
     const links = [
-        { href: '#', label: 'GitHub', icon: '<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path fill-rule="evenodd" d="M9 0C4.03 0 0 4.03 0 9c0 3.98 2.58 7.33 6.16 8.52.45.08.61-.2.61-.44 0-.21-.01-1.1-.01-2-2.5.54-3.01-1.06-3.01-1.06-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.91.06 1.39.93 1.39.93.8 1.37 2.1.97 2.62.74.08-.58.31-.97.57-1.19-2-.23-4.1-1-4.1-4.45 0-.98.35-1.78.93-2.41-.09-.23-.4-1.14.09-2.38 0 0 .74-.24 2.43.93a8.46 8.46 0 0 1 4.42 0c1.69-1.17 2.43-.93 2.43-.93.49 1.24.18 2.15.09 2.38.58.63.93 1.43.93 2.41 0 3.46-2.11 4.22-4.11 4.44.32.27.6.8.6 1.61 0 1.16-.01 2.1-.01 2.39 0 .24.16.52.62.44A9.003 9.003 0 0 0 18 9c0-4.97-4.03-9-9-9z"/></svg>' },
-        { href: '#', label: 'Twitter', icon: '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9.522 6.775L15.108 0H13.78L8.93 5.883 5.015 0H.5l5.859 8.895L.5 16h1.328l5.12-6.213L11.085 16H15.6L9.522 6.775ZM7.69 8.974l-.432-.896L2.306 1.04h2.069l3.85 5.688.6.896 4.957 7.384h-2.069L7.69 8.974z"/></svg>' },
-        { href: '#', label: 'LinkedIn', icon: '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 1.5C3.5 2.33 2.83 3 2 3 1.17 3 .5 2.33.5 1.5.5.67 1.17 0 2 0c.83 0 1.5.67 1.5 1.5zM.5 5h3v11h-3V5zm5 0h3v1.5c0 .1 1-1.8 3-1.8 2 0 4 1.3 4 4.8V16h-3v-6c0-1.5-1-2-2-2s-2 .5-2 2.5V16h-3V5z"/></svg>' },
-        { href: '#', label: 'Email', icon: '<svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="1" width="16" height="12" rx="2"/><path d="M1 3l8 6 8-6"/></svg>' },
+        { href: 'https://github.com/aina-deji', label: 'GitHub', icon: '<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path fill-rule="evenodd" d="M9 0C4.03 0 0 4.03 0 9c0 3.98 2.58 7.33 6.16 8.52.45.08.61-.2.61-.44 0-.21-.01-1.1-.01-2-2.5.54-3.01-1.06-3.01-1.06-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.91.06 1.39.93 1.39.93.8 1.37 2.1.97 2.62.74.08-.58.31-.97.57-1.19-2-.23-4.1-1-4.1-4.45 0-.98.35-1.78.93-2.41-.09-.23-.4-1.14.09-2.38 0 0 .74-.24 2.43.93a8.46 8.46 0 0 1 4.42 0c1.69-1.17 2.43-.93 2.43-.93.49 1.24.18 2.15.09 2.38.58.63.93 1.43.93 2.41 0 3.46-2.11 4.22-4.11 4.44.32.27.6.8.6 1.61 0 1.16-.01 2.1-.01 2.39 0 .24.16.52.62.44A9.003 9.003 0 0 0 18 9c0-4.97-4.03-9-9-9z"/></svg>' },
+        { href: 'https://x.com/Eukaryotical', label: 'Twitter', icon: '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9.522 6.775L15.108 0H13.78L8.93 5.883 5.015 0H.5l5.859 8.895L.5 16h1.328l5.12-6.213L11.085 16H15.6L9.522 6.775ZM7.69 8.974l-.432-.896L2.306 1.04h2.069l3.85 5.688.6.896 4.957 7.384h-2.069L7.69 8.974z"/></svg>' },
+        { href: 'https://www.linkedin.com/in/aina-ayodeji', label: 'LinkedIn', icon: '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 1.5C3.5 2.33 2.83 3 2 3 1.17 3 .5 2.33.5 1.5.5.67 1.17 0 2 0c.83 0 1.5.67 1.5 1.5zM.5 5h3v11h-3V5zm5 0h3v1.5c0 .1 1-1.8 3-1.8 2 0 4 1.3 4 4.8V16h-3v-6c0-1.5-1-2-2-2s-2 .5-2 2.5V16h-3V5z"/></svg>' },
+        { href: 'mailto:aina.ayodeji.dev@gmail.com', label: 'Email', icon: '<svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="1" width="16" height="12" rx="2"/><path d="M1 3l8 6 8-6"/></svg>' },
     ];
     container.innerHTML = links.map(l => `
         <a href="${l.href}" aria-label="${l.label}" class="text-[#666666] hover:text-white transition-colors duration-200" target="_blank" rel="noopener">${l.icon}</a>

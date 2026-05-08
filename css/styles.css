@@ -18,10 +18,18 @@ html {
     border: 2px dashed #333333;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.upload-zone.drag-over {
+    border-color: #ffffff;
+    background-color: #0f0f0f;
+    transform: scale(1.01);
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.05);
+}
+
 .upload-zone:hover {
     border-color: #ffffff;
     background-color: #0a0a0a;
 }
+
 /*File Checklist Item */
 .file-item {
     transition: background-color 0.15s ease;
@@ -106,3 +114,8 @@ html {
     transform: translateY(0);
 }
 
+/* ===== Toast Notification ===== */
+#toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
