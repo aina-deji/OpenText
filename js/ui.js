@@ -12,6 +12,15 @@
 /* ─── Wait for the DOM to be ready ─── */
 document.addEventListener('DOMContentLoaded', () => {
     /* ─── Cache DOM elements ─── */
+    // ── PWA: register service worker ──
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/serviceWorker.js')
+            .then(reg => console.log('Fltxt SW registered', reg.scope))
+            .catch(err => console.warn('Fltxt SW registration failed:', err));
+    });
+}
+/* ends */
     const uploadZone    = document.getElementById('uploadZone');
     const folderInput   = document.getElementById('folderInput');
     const checklistSec  = document.getElementById('checklistSection');
